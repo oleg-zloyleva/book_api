@@ -1,13 +1,13 @@
 include .env
 export
 
-php     = app
-db      = db
-nodejs  = nodejs
+php     = app_api
+db      = db_api
+nodejs  = nodejs_api
 
-container_php       = $(DOCKER_PREFIX)-$(php)
-container_db        = $(DOCKER_PREFIX)-$(db)
-container_nodejs    = $(DOCKER_PREFIX)-$(nodejs)
+container_php       = $(DOCKER_PREFIX)-app
+container_db        = $(DOCKER_PREFIX)-db
+container_nodejs    = $(DOCKER_PREFIX)-nodejs
 
 #####################################
 ###                               ###
@@ -26,21 +26,7 @@ composer_dep: #install composer dependency >> ./vendors
 	@docker run --rm -v $(CURDIR):/app composer install
 
 key: #generate APP key
-	@sudo docker-compose exec $(php) php artisan key:generate
-
-
-#####################################
-###                               ###
-###       Start/stop project      ###
-###                               ###
-#####################################
-
-start: #start docker container
-	@sudo docker-compose -p app-network up --build -d
-	#@sudo docker-compose up -d
-
-stop: #stop docker container
-	@sudo docker-compose down
+	@cd ../ && sudo docker-compose exec $(php) php artisan key:generate
 
 
 #####################################
@@ -49,24 +35,21 @@ stop: #stop docker container
 ###                               ###
 #####################################
 
-show: #show docker's containers
-	@sudo docker ps
-
 connect_app: #Connect
-	@docker-compose exec $(php) bash
+	@cd ../ && docker-compose exec $(php) bash
 
 connect_db: #Connect
-	@docker-compose exec $(db) bash
+	@cd ../ && docker-compose exec $(db) bash
 
 connect_nodejs: #Connect
-	@sudo docker-compose exec $(nodejs) /bin/sh
+	@cd ../ && sudo docker-compose exec $(nodejs) /bin/sh
 
 
 run_com_app: #Run commands in PHP container c=[commands]
-	@sudo docker-compose exec $(php) $(c)
+	@cd ../ && sudo docker-compose exec $(php) $(c)
 
 run_com_node: #Run commands in PHP container c=[commands]
-	@sudo docker-compose exec $(nodejs) $(c)
+	@cd ../ && sudo docker-compose exec $(nodejs) $(c)
 
 
 #####################################
@@ -76,19 +59,19 @@ run_com_node: #Run commands in PHP container c=[commands]
 #####################################
 
 create_controller: #create controller name=[controllerName]
-	@sudo docker-compose exec $(php) php artisan make:controller $(name)
+	@cd ../ && sudo docker-compose exec $(php) php artisan make:controller $(name)
 
 create_api_controller: #create API controller name=[controllerName]
-	@sudo docker-compose exec $(php) php artisan make:controller ..\\..\\Api\\V1\\Controllers\\$(name)
+	@cd ../ && sudo docker-compose exec $(php) php artisan make:controller ..\\..\\Api\\V1\\Controllers\\$(name)
 
 create_request: #create FormRequest name=[controllerName]
-	@sudo docker-compose exec $(php) php artisan make:request $(name)
+	@cd ../ && sudo docker-compose exec $(php) php artisan make:request $(name)
 
 create_mailer: #create mailer name=[controllerName]
-	@sudo docker-compose exec $(php) php artisan make:mail $(name)
+	@cd ../ && sudo docker-compose exec $(php) php artisan make:mail $(name)
 
 create_test: #create test name=[testName]
-	@sudo docker-compose exec $(php) php artisan make:test $(name)Test
+	@cd ../ && sudo docker-compose exec $(php) php artisan make:test $(name)Test
 
 #####################################
 ###                               ###
@@ -97,38 +80,38 @@ create_test: #create test name=[testName]
 #####################################
 
 watch: #Run watch
-	@sudo docker-compose exec $(nodejs) npm run watch
+	@cd ../ && sudo docker-compose exec $(nodejs) npm run watch
 
 
 test_class: #test specific class name="$(name)"
-	@sudo docker exec -it $(container_php) bash -c 'vendor/bin/phpunit --filter $(name)'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'vendor/bin/phpunit --filter $(name)'
 
 tinker: #Run tinker
-	@sudo docker-compose exec $(php) php artisan tinker
+	@cd ../ && sudo docker-compose exec $(php) php artisan tinker
 
 route: #Run tinker
-	@sudo docker-compose exec $(php) php artisan route:list
+	@cd ../ && sudo docker-compose exec $(php) php artisan route:list
 
 
 refresh: #Refresh the database and run all database seeds
-	@@sudo docker exec -it $(container_php) bash -c 'php artisan migrate:refresh --seed'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php artisan migrate:refresh --seed'
 
 
 clear_cache: #clear laravel cache php artisan optimize --force php artisan config:cache php artisan route:cache
-	@sudo docker exec -it $(container_php) bash -c 'php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan config:clear'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan config:clear'
 
 
 composer_update: #update vendors
-	@sudo docker exec -it $(container_php) bash -c 'php composer.phar update'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php composer.phar update'
 
 composer_dump: #update vendors
-	@sudo docker exec -it $(container_php) bash -c 'php composer.phar dump-autoload'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php composer.phar dump-autoload'
 
 clear_log:
 	@sudo cat /dev/null > storage/logs/laravel.log; sudo cat /dev/null > storage/logs/queue-worker.log
 
 swagger_publish: #publish swagger conf
-	@sudo docker exec -it $(container_php) bash -c 'php artisan l5-swagger:publish'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php artisan l5-swagger:publish'
 
 swagger: #generate dock
-	@sudo docker exec -it $(container_php) bash -c 'php artisan l5-swagger:generate'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php artisan l5-swagger:generate'
