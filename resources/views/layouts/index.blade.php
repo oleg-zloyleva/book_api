@@ -10,12 +10,14 @@
     </head>
     <body>
 
-    @yield('content')
+    <div id="app">
+        @yield('content')
+    </div>
 
     </body>
 
-{{--    <script src="{{ asset('js/app.js') }}"></script>--}}
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/cleave.min.js') }}"></script>
-    <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/cleave.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/common.js') }}"></script>--}}
 </html>
