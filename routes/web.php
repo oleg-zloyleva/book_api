@@ -20,6 +20,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/card', function () {
-    return view('welcome');
-});
+Route::get('/card', "CardController@showForm");
