@@ -67,6 +67,9 @@ create_api_controller: #create API controller name=[controllerName]
 create_request: #create FormRequest name=[controllerName]
 	@cd ../ && sudo docker-compose exec $(php) php artisan make:request $(name)
 
+create_seeder: #create TableSeeder name=[TableSeeder]
+	@cd ../ && sudo docker-compose exec $(php) php artisan make:seeder $(name)TableSeeder
+
 create_mailer: #create mailer name=[controllerName]
 	@cd ../ && sudo docker-compose exec $(php) php artisan make:mail $(name)
 
