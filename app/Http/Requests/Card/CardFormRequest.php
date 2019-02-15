@@ -27,7 +27,7 @@ class CardFormRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'first_name' => 'required|string|max:255|min:3',
             'last_name' => 'required|string|max:255|min:3',
             'address' => 'required|string|max:255|min:3',
