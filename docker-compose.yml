@@ -78,7 +78,5 @@ networks:
     driver: bridge
 #Volumes
 volumes:
-  dbdata:
-    driver: local
   db_data:
     driver: local
