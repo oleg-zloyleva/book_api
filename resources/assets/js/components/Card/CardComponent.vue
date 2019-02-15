@@ -1,7 +1,7 @@
 <template>
     <div class="overlayFormMember js-overlay">
         <div class="popup js-popup-campaign">
-            <div class="btnClosse"></div>
+            <div class="btnClosse" @click="closeIframe"></div>
             <div class="wrappers">
 
                 <payment-info
@@ -102,11 +102,14 @@
             }
         },
         methods:{
+            closeIframe(){
+                window.parent.postMessage({status: "ok", action: "close"}, '*');
+            },
             submitCardHandler(){
                 console.log("submitCardHandler");
 
                 //todo generate success/fail event
-                window.parent.postMessage({status: "ok"}, '*');
+                window.parent.postMessage({status: "ok", action: "payment_success"}, '*');
             },
             enterCardHandler(){
                 console.log("enterCardHandler");

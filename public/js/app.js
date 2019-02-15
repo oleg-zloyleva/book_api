@@ -277,11 +277,18 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
     };
   },
   methods: {
+    closeIframe: function closeIframe() {
+      window.parent.postMessage({
+        status: "ok",
+        action: "close"
+      }, '*');
+    },
     submitCardHandler: function submitCardHandler() {
       console.log("submitCardHandler"); //todo generate success/fail event
 
       window.parent.postMessage({
-        status: "ok"
+        status: "ok",
+        action: "payment_success"
       }, '*');
     },
     enterCardHandler: function enterCardHandler() {
@@ -30886,7 +30893,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "overlayFormMember js-overlay" }, [
     _c("div", { staticClass: "popup js-popup-campaign" }, [
-      _c("div", { staticClass: "btnClosse" }),
+      _c("div", { staticClass: "btnClosse", on: { click: _vm.closeIframe } }),
       _vm._v(" "),
       _c(
         "div",
