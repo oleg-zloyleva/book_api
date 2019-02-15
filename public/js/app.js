@@ -278,7 +278,11 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
   },
   methods: {
     submitCardHandler: function submitCardHandler() {
-      console.log("submitCardHandler");
+      console.log("submitCardHandler"); //todo generate success/fail event
+
+      window.parent.postMessage({
+        status: "ok"
+      }, '*');
     },
     enterCardHandler: function enterCardHandler() {
       console.log("enterCardHandler");

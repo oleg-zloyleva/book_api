@@ -104,9 +104,12 @@
         methods:{
             submitCardHandler(){
                 console.log("submitCardHandler");
+
+                //todo generate success/fail event
+                window.parent.postMessage({status: "ok"}, '*');
             },
             enterCardHandler(){
-                console.log("enterCardHandler")
+                console.log("enterCardHandler");
             }
         }
     }
