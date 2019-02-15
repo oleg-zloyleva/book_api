@@ -36,7 +36,7 @@ services:
     volumes:
       - ./:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
-      - /etc/letsencrypt/live/mmsafecheckout.com/:/etc/letsencrypt/live/mmsafecheckout.com/
+      - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - app-network
 
