@@ -17,7 +17,8 @@ Route::get('reset_password/{token}', ['as' => 'password.reset', function($token)
 }]);
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return response(view('welcome'),403);
+    //abort(403);
+})->name("home");
 
 Route::get('/card', "CardController@showForm");
