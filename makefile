@@ -26,7 +26,7 @@ composer_dep: #install composer dependency >> ./vendors
 	@docker run --rm -v $(CURDIR):/app composer install
 
 key: #generate APP key
-	@cd ../ && sudo docker-compose exec $(php) php artisan key:generate
+	@sudo docker-compose exec $(php) php artisan key:generate
 
 
 #####################################
@@ -36,20 +36,20 @@ key: #generate APP key
 #####################################
 
 connect_app: #Connect
-	@cd ../ && docker-compose exec $(php) bash
+	@docker-compose exec $(php) bash
 
 connect_db: #Connect
-	@cd ../ && docker-compose exec $(db) bash
+	@docker-compose exec $(db) bash
 
 connect_nodejs: #Connect
-	@cd ../ && sudo docker-compose exec $(nodejs) /bin/sh
+	@sudo docker-compose exec $(nodejs) /bin/sh
 
 
 run_com_app: #Run commands in PHP container c=[commands]
-	@cd ../ && sudo docker-compose exec $(php) $(c)
+	@sudo docker-compose exec $(php) $(c)
 
 run_com_node: #Run commands in PHP container c=[commands]
-	@cd ../ && sudo docker-compose exec $(nodejs) $(c)
+	@sudo docker-compose exec $(nodejs) $(c)
 
 
 #####################################
@@ -59,28 +59,31 @@ run_com_node: #Run commands in PHP container c=[commands]
 #####################################
 
 create_controller: #create controller name=[controllerName]
-	@cd ../ && sudo docker-compose exec $(php) php artisan make:controller $(name)
+	@sudo docker-compose exec $(php) php artisan make:controller $(name)
 
 create_api_controller: #create API controller name=[controllerName]
-	@cd ../ && sudo docker-compose exec $(php) php artisan make:controller ..\\..\\Api\\V1\\Controllers\\$(name)
+	@sudo docker-compose exec $(php) php artisan make:controller ..\\..\\Api\\V1\\Controllers\\$(name)
 
 create_request: #create FormRequest name=[controllerName]
-	@cd ../ && sudo docker-compose exec $(php) php artisan make:request $(name)
+	@sudo docker-compose exec $(php) php artisan make:request $(name)
 
 create_seeder: #create TableSeeder name=[TableSeeder]
-	@cd ../ && sudo docker-compose exec $(php) php artisan make:seeder $(name)TableSeeder
+	@sudo docker-compose exec $(php) php artisan make:seeder $(name)TableSeeder
 
 create_mailer: #create mailer name=[controllerName]
-	@cd ../ && sudo docker-compose exec $(php) php artisan make:mail $(name)
+	@sudo docker-compose exec $(php) php artisan make:mail $(name)
 
 create_test: #create test name=[testName]
-	@cd ../ && sudo docker-compose exec $(php) php artisan make:test $(name)Test
+	@sudo docker-compose exec $(php) php artisan make:test $(name)Test
 
 #####################################
 ###                               ###
 ###          Work with FE         ###
 ###                               ###
 #####################################
+
+npm_install: #Run install
+	@cd ../ && sudo docker-compose exec $(nodejs) npm install
 
 watch: #Run watch
 	@cd ../ && sudo docker-compose exec $(nodejs) npm run watch

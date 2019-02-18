@@ -13,6 +13,10 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Cleave from 'vue-cleave-component';
+
+Vue.use(Cleave);
+
 // Vue.component('example', require('./components/Example.vue'));
 Vue.component('card-component', require('./components/Card/CardComponent').default);
 

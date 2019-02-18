@@ -12,38 +12,59 @@
                     <form class="form" @submit.prevent="submitCardHandler">
                         <div class="wrapInput">
                             <div class="itemInput">
-                                <label for="cardType" class="formLabel">Card type</label>
-                                <div class="select">
-                                    <select name="" id="cardType" disabled v-model="paymentData.cardType">
-                                        <option value="">Card type</option>
-                                        <option value="Visa">Visa</option>
-                                        <option value="Visa Electron">Visa Electron</option>
-                                        <option value="Maestro">Maestro</option>
-                                        <option value="Mastercard">Mastercard</option>
-                                        <option value="American Express">American Express</option>
-                                        <option value="Discover Card">Discover Card</option>
-                                    </select>
-                                </div>
-                                <img class="imgCard" id="imgCardType" src="" alt="">
+                                <label class="formLabel">Card type</label>
+                                <img
+                                        class="imgCard"
+                                        id="imgCardType"
+                                        :src="'/img/creditCard/' + imgCardType + '.png'"
+                                        :alt="imgCardType"
+                                        :title="imgCardType"
+                                >
                             </div>
                             <div class="itemInput">
                                 <label for="card" class="formLabel">Card <br>number</label>
-                                <input class="input card-number-mask" id="card" name="cardNumber"
-                                       v-model="paymentData.cardNumber"
-                                       @input="enterCardHandler"
-                                       placeholder="0000 0000 0000 0000">
+                                <cleave
+                                        v-model="paymentData.cardNumber"
+                                        :options="cardNum"
+                                        class="input"
+                                        name="cardNumber"
+                                        id="card"
+                                        placeholder="0000 0000 0000 0000"
+                                ></cleave>
                             </div>
                             <div class="itemInput">
                                 <label for="cardExpiration" class="formLabel">Expiration <br>Date</label>
-                                <input class="input exp-date-mask" id="cardExpiration" name="expirationDate" placeholder="00/00" v-model="paymentData.expirationDate">
+                                <cleave
+                                        v-model="paymentData.expirationDate"
+                                        :options="{date: true, datePattern: ['m','y']}"
+                                        class="input"
+                                        name="expirationDate"
+                                        id="cardExpiration"
+                                        placeholder="00/00"
+                                ></cleave>
                             </div>
                             <div class="itemInput">
-                                <label for="nameCard" class="formLabel">Name</label>
-                                <input class="input only-letters" id="nameCard" name="nameCard"  placeholder="Name" v-model="paymentData.nameCard">
+                                <label for="nameUser" class="formLabel">Name</label>
+                                <input
+                                        v-model="paymentData.nameUser"
+                                        class="input"
+                                        name="nameUser"
+                                        id="nameUser"
+                                        @input="onlyLetters"
+                                        placeholder="Name"
+                                >
                             </div>
                             <div class="itemInput">
                                 <label for="cvvCode" class="formLabel">CVV</label>
-                                <input class="input only-number" id="cvvCode" name="cvv" placeholder="000" maxlength="3" v-model="paymentData.cvvCode">
+                                <cleave
+                                        v-model="paymentData.cvvCode"
+                                        :options="{card: true}"
+                                        class="input"
+                                        name="cvv"
+                                        id="cvvCode"
+                                        :maxlength="maxLengthCvv"
+                                        :placeholder="placeholderCvv"
+                                ></cleave>
                             </div>
                             <div class="wrapBtn">
                                 <div class="wrapSubmit">
@@ -55,8 +76,10 @@
                 </div>
                 <div class="paymentContainer">
                     <div class="wrapRemember">
-                        <p class="textRemember">Your order number is 5060037. Remember, your subscription is a subscription
-                            service. If you do not unsubscribe before the expiry of the trial period, the subscription will
+                        <p class="textRemember">Your order number is 5060037. Remember, your subscription is a
+                            subscription
+                            service. If you do not unsubscribe before the expiry of the trial period, the subscription
+                            will
                             be renewed every 30 days in the amount of &euro; 29. This campaign complies with the
                             requirements of
                             the European Union.</p>
@@ -86,25 +109,26 @@
                     cardType: "",
                     cardNumber: "",
                     expirationDate: "",
-                    nameCard: "",
-                    cvvCode: "",
+                    nameUser: "",
+                    cvvCode: ""
                 },
                 paymentInfo: {},// Todo parse from query OR took in blade
-                cards: {
-                    37: {0: "American Express", 1: "", 2: "y", 3: 15, 4: "l"},
-                    4: {0: "Visa", 1: "", 2: "y", 3: ""},
-                    4026: {0: "Visa Electron", 1: "", 2: "y", 3: 16, 4: "l"},
-                    417500: {0: "Visa Electron", 1: "", 2: "y", 3: 16, 4: "l"},
-                    4405: {0: "Visa Electron", 1: "", 2: "y", 3: 16, 4: "l"},
-                    4508: {0: "Visa Electron", 1: "", 2: "y", 3: 16, 4: "l"},
-                    4844: {0: "Visa Electron", 1: "", 2: "y", 3: 16, 4: "l"},
-                    4913: {0: "Visa Electron", 1: "", 2: "y", 3: 16, 4: "l"},
-                    4917: {0: "Visa Electron", 1: "", 2: "y", 3: 16, 4: "l"},
-                    5: {0: "Mastercard", 1: "", 2: "y", 3: 16, 4: "l"},
-                    56: {0: "Maestro", 1: "", 2: "y", 3: ""},
-                    63: {0: "Maestro", 1: "", 2: "y", 3: ""},
-                    65: {0: "Discover Card", 1: "", 2: "y", 3: ""},
-                    67: {0: "Maestro", 1: "", 2: "y", 3: 16, 4: "l"},
+                imgCardType: 'unknown',
+                maxLengthCvv: 3,
+                placeholderCvv: '000',
+                cardNum: {
+                    creditCard: true,
+                    onCreditCardTypeChanged: (type) => {
+                        this.imgCardType = type;
+                        let cvvCode = document.getElementById('cvvCode');
+                        if (type === 'amex') {
+                            this.maxLengthCvv = '4';
+                            this.placeholderCvv = '0000';
+                        } else {
+                            this.maxLengthCvv = '3';
+                            this.placeholderCvv = '000';
+                        }
+                    }
                 }
             }
         },
@@ -115,14 +139,14 @@
             closeIframe(){
                 window.parent.postMessage({status: "ok", action: "close"}, '*');
             },
-            submitCardHandler(){
+            submitCardHandler() {
                 console.log("submitCardHandler");
 
                 //todo generate success/fail event
                 window.parent.postMessage({status: "ok", action: "payment_success"}, '*');
             },
-            enterCardHandler(){
-                console.log("enterCardHandler");
+            onlyLetters(e) {
+                // console.log(e.target.value);
             }
         }
     }
