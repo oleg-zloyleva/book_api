@@ -176,45 +176,12 @@
               width: 100%;
               display: flex;
               align-items: center;
-              justify-content: space-between;
+              justify-content: flex-start;
               margin: 0 auto 15px;
-
-              &:first-child {
-                justify-content: flex-start;
-
-                .formLabel {
-                  width: 70px;
-                  margin-right: 12px;
-                }
-              }
-
-              .select {
-                display: inline-block;
-                position: relative;
-                vertical-align: middle;
-                padding: 0;
-                overflow: hidden;
-                background: #fff;
-                color: #555;
-                border-radius: 4px;
-                border-bottom: 1px solid #aaa;
-                text-shadow: none;
-                transition: box-shadow 0.25s ease;
-
-                select {
-                  cursor: pointer;
-                  padding: 11px;
-                  width: 150px;
-                  height: 40px;
-                  border: none;
-                  border-radius: 4px;
-                  background: #fff;
-                  font-size: 16px;
-                }
-              }
 
               .formLabel {
                 display: inline-block;
+                width: 80px;
                 font-family: RobotoRegular, sans-serif;
                 font-size: 16px;
                 color: #fff;
@@ -241,7 +208,7 @@
                 height: 40px;
                 border-radius: 4px;
                 padding: 2px;
-                margin-left: 20px;
+                background-color: #fff;
               }
             }
 
