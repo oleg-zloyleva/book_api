@@ -167,8 +167,15 @@ __webpack_require__.r(__webpack_exports__);
 Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ "./resources/assets/js/components/Card/PaymentInfoComponent.vue").default);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
+  props: {
+    init_data: {
+      type: String,
+      required: true
+    }
+  },
   data: function data() {
     return {
+      data: {},
       paymentData: {
         cardType: "",
         cardNumber: "",
@@ -276,6 +283,9 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
       }
     };
   },
+  created: function created() {
+    this.data = JSON.parse(this.init_data);
+  },
   methods: {
     closeIframe: function closeIframe() {
       window.parent.postMessage({
@@ -322,10 +332,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PaymentInfoComponent"
+  name: "PaymentInfoComponent",
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  }
 });
 
 /***/ }),
@@ -30899,7 +30913,7 @@ var render = function() {
         "div",
         { staticClass: "wrappers" },
         [
-          _c("payment-info"),
+          _c("payment-info", { attrs: { data: _vm.data } }),
           _vm._v(" "),
           _c("div", { staticClass: "paymentContainer" }, [
             _c(
@@ -31225,55 +31239,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "paymentContainer" }, [
-      _c("h3", { staticClass: "titlePay" }, [_vm._v("Payment security")]),
+  return _c("div", { staticClass: "paymentContainer" }, [
+    _c("h3", { staticClass: "titlePay" }, [_vm._v("Payment security")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "plan" }, [
+      _c("div", { staticClass: "item" }, [
+        _c("p", { staticClass: "titlePlan" }, [_vm._v("Product")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "values valuesRegular" }, [
+          _c("span", { attrs: { id: "payment-plan" } }, [
+            _vm._v(_vm._s(_vm.data.plan_name))
+          ])
+        ])
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "plan" }, [
-        _c("div", { staticClass: "item" }, [
-          _c("p", { staticClass: "titlePlan" }, [_vm._v("Product")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "values valuesRegular" }, [
-            _c("span", { attrs: { id: "payment-plan" } }, [_vm._v("Amount")])
-          ])
-        ]),
+      _c("div", { staticClass: "item" }, [
+        _c("p", { staticClass: "pricePlan" }, [_vm._v("Subscription")]),
         _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("p", { staticClass: "pricePlan" }, [_vm._v("Subscription")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "values" }, [
-            _c("span", { attrs: { id: "payment-price" } }, [_vm._v("25")]),
-            _vm._v(" €")
-          ])
-        ]),
+        _c("p", { staticClass: "values" }, [
+          _c("span", { attrs: { id: "payment-price" } }, [
+            _vm._v(_vm._s(_vm.data.plan_price))
+          ]),
+          _vm._v(" €")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "item" }, [
+        _c("p", { staticClass: "workoutPlan" }, [_vm._v("Total")]),
         _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("p", { staticClass: "pariodPlan" }, [_vm._v("TVA")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "values" }, [
-            _c("span", { attrs: { id: "payment-tva" } }, [_vm._v("4.83")]),
-            _vm._v(" €")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("p", { staticClass: "workoutPlan" }, [_vm._v("Total")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "values valuesBold" }, [
-            _c("span", { attrs: { id: "payment-total" } }, [_vm._v("25")]),
-            _vm._v(" €")
-          ])
+        _c("p", { staticClass: "values valuesBold" }, [
+          _c("span", { attrs: { id: "payment-total" } }, [
+            _vm._v(_vm._s(_vm.data.plan_price))
+          ]),
+          _vm._v(" €")
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

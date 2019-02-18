@@ -5,7 +5,7 @@
             <div class="wrappers">
 
                 <payment-info
-
+                    :data="data"
                 ></payment-info>
 
                 <div class="paymentContainer">
@@ -73,8 +73,15 @@
 
     export default {
         name: "CardComponent",
+        props: {
+            init_data:{
+                type: String,
+                required: true
+            }
+        },
         data(){
             return {
+                data: {},
                 paymentData: {
                     cardType: "",
                     cardNumber: "",
@@ -100,6 +107,9 @@
                     67: {0: "Maestro", 1: "", 2: "y", 3: 16, 4: "l"},
                 }
             }
+        },
+        created(){
+            this.data = JSON.parse(this.init_data);
         },
         methods:{
             closeIframe(){
