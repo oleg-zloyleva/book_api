@@ -2,6 +2,8 @@
 
 @section('content')
 
-    <card-component></card-component>
+    <card-component
+        init_data="{{ $data }}"
+    ></card-component>
 
 @endsection

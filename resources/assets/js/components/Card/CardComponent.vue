@@ -5,7 +5,7 @@
             <div class="wrappers">
 
                 <payment-info
-
+                    :data="data"
                 ></payment-info>
 
                 <div class="paymentContainer">
@@ -96,8 +96,15 @@
 
     export default {
         name: "CardComponent",
-        data() {
+        props: {
+            init_data:{
+                type: String,
+                required: true
+            }
+        },
+        data(){
             return {
+                data: {},
                 paymentData: {
                     cardType: "",
                     cardNumber: "",
@@ -125,8 +132,11 @@
                 }
             }
         },
-        methods: {
-            closeIframe() {
+        created(){
+            this.data = JSON.parse(this.init_data);
+        },
+        methods:{
+            closeIframe(){
                 window.parent.postMessage({status: "ok", action: "close"}, '*');
             },
             submitCardHandler() {
@@ -136,7 +146,7 @@
                 window.parent.postMessage({status: "ok", action: "payment_success"}, '*');
             },
             onlyLetters(e) {
-                console.log(e.target.value);
+                // console.log(e.target.value);
             }
         }
     }

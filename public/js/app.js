@@ -190,10 +190,17 @@ __webpack_require__.r(__webpack_exports__);
 Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ "./resources/assets/js/components/Card/PaymentInfoComponent.vue").default);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
+  props: {
+    init_data: {
+      type: String,
+      required: true
+    }
+  },
   data: function data() {
     var _this = this;
 
     return {
+      data: {},
       paymentData: {
         cardType: "",
         cardNumber: "",
@@ -223,6 +230,9 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
       }
     };
   },
+  created: function created() {
+    this.data = JSON.parse(this.init_data);
+  },
   methods: {
     closeIframe: function closeIframe() {
       window.parent.postMessage({
@@ -238,8 +248,7 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
         action: "payment_success"
       }, '*');
     },
-    onlyLetters: function onlyLetters(e) {
-      console.log(e.target.value);
+    onlyLetters: function onlyLetters(e) {// console.log(e.target.value);
     }
   }
 });
@@ -269,10 +278,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PaymentInfoComponent"
+  name: "PaymentInfoComponent",
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  }
 });
 
 /***/ }),
@@ -32334,7 +32347,7 @@ var render = function() {
         "div",
         { staticClass: "wrappers" },
         [
-          _c("payment-info"),
+          _c("payment-info", { attrs: { data: _vm.data } }),
           _vm._v(" "),
           _c("div", { staticClass: "paymentContainer" }, [
             _c(
@@ -32572,55 +32585,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "paymentContainer" }, [
-      _c("h3", { staticClass: "titlePay" }, [_vm._v("Payment security")]),
+  return _c("div", { staticClass: "paymentContainer" }, [
+    _c("h3", { staticClass: "titlePay" }, [_vm._v("Payment security")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "plan" }, [
+      _c("div", { staticClass: "item" }, [
+        _c("p", { staticClass: "titlePlan" }, [_vm._v("Product")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "values valuesRegular" }, [
+          _c("span", { attrs: { id: "payment-plan" } }, [
+            _vm._v(_vm._s(_vm.data.plan_name))
+          ])
+        ])
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "plan" }, [
-        _c("div", { staticClass: "item" }, [
-          _c("p", { staticClass: "titlePlan" }, [_vm._v("Product")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "values valuesRegular" }, [
-            _c("span", { attrs: { id: "payment-plan" } }, [_vm._v("Amount")])
-          ])
-        ]),
+      _c("div", { staticClass: "item" }, [
+        _c("p", { staticClass: "pricePlan" }, [_vm._v("Subscription")]),
         _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("p", { staticClass: "pricePlan" }, [_vm._v("Subscription")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "values" }, [
-            _c("span", { attrs: { id: "payment-price" } }, [_vm._v("25")]),
-            _vm._v(" €")
-          ])
-        ]),
+        _c("p", { staticClass: "values" }, [
+          _c("span", { attrs: { id: "payment-price" } }, [
+            _vm._v(_vm._s(_vm.data.plan_price))
+          ]),
+          _vm._v(" €")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "item" }, [
+        _c("p", { staticClass: "workoutPlan" }, [_vm._v("Total")]),
         _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("p", { staticClass: "pariodPlan" }, [_vm._v("TVA")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "values" }, [
-            _c("span", { attrs: { id: "payment-tva" } }, [_vm._v("4.83")]),
-            _vm._v(" €")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("p", { staticClass: "workoutPlan" }, [_vm._v("Total")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "values valuesBold" }, [
-            _c("span", { attrs: { id: "payment-total" } }, [_vm._v("25")]),
-            _vm._v(" €")
-          ])
+        _c("p", { staticClass: "values valuesBold" }, [
+          _c("span", { attrs: { id: "payment-total" } }, [
+            _vm._v(_vm._s(_vm.data.plan_price))
+          ]),
+          _vm._v(" €")
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46255,8 +46258,8 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * include Vue and Vue Resource. This gives a great starting point for
@@ -46271,7 +46274,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 
 
-Vue.use(vue_cleave_component__WEBPACK_IMPORTED_MODULE_0___default.a); // Vue.component('example', require('./components/Example.vue'));
+Vue.use(vue_cleave_component__WEBPACK_IMPORTED_MODULE_1___default.a); // Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('card-component', __webpack_require__(/*! ./components/Card/CardComponent */ "./resources/assets/js/components/Card/CardComponent.vue").default);
 var app = new Vue({
@@ -46487,8 +46490,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OSPanel\domains\bookapi\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\bookapi\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! /var/www/resources/assets/js/app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ }),

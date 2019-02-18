@@ -1,13 +1,13 @@
 include .env
 export
 
-php     = app
-db      = db
-nodejs  = nodejs
+php     = app_api
+db      = db_api
+nodejs  = nodejs_api
 
-container_php       = $(DOCKER_PREFIX)-$(php)
-container_db        = $(DOCKER_PREFIX)-$(db)
-container_nodejs    = $(DOCKER_PREFIX)-$(nodejs)
+container_php       = $(DOCKER_PREFIX)-app
+container_db        = $(DOCKER_PREFIX)-db
+container_nodejs    = $(DOCKER_PREFIX)-nodejs
 
 #####################################
 ###                               ###
@@ -34,16 +34,6 @@ key: #generate APP key
 ###       Work in containers      ###
 ###                               ###
 #####################################
-
-start: #start docker container
-	@sudo docker-compose up -d
-
-stop: #stop docker container
-	@sudo docker-compose down
-
-show: #show docker's containers
-	@sudo docker ps
-
 
 connect_app: #Connect
 	@docker-compose exec $(php) bash
@@ -92,39 +82,42 @@ create_test: #create test name=[testName]
 ###                               ###
 #####################################
 
+npm_install: #Run install
+	@cd ../ && sudo docker-compose exec $(nodejs) npm install
+
 watch: #Run watch
-	@sudo docker-compose exec $(nodejs) npm run watch
+	@cd ../ && sudo docker-compose exec $(nodejs) npm run watch
 
 
 test_class: #test specific class name="$(name)"
-	@sudo docker exec -it $(container_php) bash -c 'vendor/bin/phpunit --filter $(name)'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'vendor/bin/phpunit --filter $(name)'
 
 tinker: #Run tinker
-	@sudo docker-compose exec $(php) php artisan tinker
+	@cd ../ && sudo docker-compose exec $(php) php artisan tinker
 
 route: #Run tinker
-	@sudo docker-compose exec $(php) php artisan route:list
+	@cd ../ && sudo docker-compose exec $(php) php artisan route:list
 
 
 refresh: #Refresh the database and run all database seeds
-	@sudo docker exec -it $(container_php) bash -c 'php artisan migrate:refresh --seed'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php artisan migrate:refresh --seed'
 
 
 clear_cache: #clear laravel cache php artisan optimize --force php artisan config:cache php artisan route:cache
-	@sudo docker exec -it $(container_php) bash -c 'php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan config:clear'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan config:clear'
 
 
 composer_update: #update vendors
-	@sudo docker exec -it $(container_php) bash -c 'php composer.phar update'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php composer.phar update'
 
 composer_dump: #update vendors
-	@sudo docker exec -it $(container_php) bash -c 'php composer.phar dump-autoload'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php composer.phar dump-autoload'
 
 clear_log:
 	@sudo cat /dev/null > storage/logs/laravel.log; sudo cat /dev/null > storage/logs/queue-worker.log
 
 swagger_publish: #publish swagger conf
-	@sudo docker exec -it $(container_php) bash -c 'php artisan l5-swagger:publish'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php artisan l5-swagger:publish'
 
 swagger: #generate dock
-	@sudo docker exec -it $(container_php) bash -c 'php artisan l5-swagger:generate'
+	@cd ../ && sudo docker exec -it $(container_php) bash -c 'php artisan l5-swagger:generate'
