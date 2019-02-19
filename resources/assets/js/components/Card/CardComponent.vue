@@ -5,7 +5,7 @@
             <div class="wrappers">
 
                 <payment-info
-                    :data="data"
+                        :data="data"
                 ></payment-info>
 
                 <div class="paymentContainer">
@@ -66,11 +66,42 @@
                                         :placeholder="placeholderCvv"
                                 ></cleave>
                             </div>
-                            <div class="wrapBtn">
-                                <div class="wrapSubmit">
-                                    <button type="submit" class="btnSubmit">CONFIRM PAYMENT</button>
+                        </div>
+                        <div class="agree-block">
+                            <div class="agree-block__row">
+                                <div class="agree-block__checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span></span>
+                                        I confirm that I have read and accepted the
+                                        <a class="agree-block__link" href="/privacy_policy">Privacy Policy</a>
+                                    </label>
                                 </div>
                             </div>
+                            <div class="agree-block__row">
+                                <div class="agree-block__checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span></span>
+                                        I confirm that I have read and accepted 
+                                        <a class="agree-block__link" href="/terms_conditions">Terms of use</a>
+                                        and the
+                                        <a class="agree-block__link" href="/refund_policy">Refund Policy</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="agree-block__row">
+                                <div class="agree-block__checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span></span>
+                                        I am aware that the automatic service renewal option is enabled
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapBtn">
+                            <button type="submit" class="btnSubmit">CONFIRM PAYMENT</button>
                         </div>
                     </form>
                 </div>
@@ -97,12 +128,12 @@
     export default {
         name: "CardComponent",
         props: {
-            init_data:{
+            init_data: {
                 type: String,
                 required: true
             }
         },
-        data(){
+        data() {
             return {
                 data: {},
                 paymentData: {
@@ -132,11 +163,11 @@
                 }
             }
         },
-        created(){
+        created() {
             this.data = JSON.parse(this.init_data);
         },
-        methods:{
-            closeIframe(){
+        methods: {
+            closeIframe() {
                 window.parent.postMessage({status: "ok", action: "close"}, '*');
             },
             submitCardHandler() {

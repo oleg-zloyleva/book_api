@@ -187,6 +187,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ "./resources/assets/js/components/Card/PaymentInfoComponent.vue").default);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
@@ -32501,15 +32532,17 @@ var render = function() {
                       })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ])
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3)
               ]
             )
           ]),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(4)
         ],
         1
       )
@@ -32541,11 +32574,81 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrapBtn" }, [
-      _c("div", { staticClass: "wrapSubmit" }, [
-        _c("button", { staticClass: "btnSubmit", attrs: { type: "submit" } }, [
-          _vm._v("CONFIRM PAYMENT")
+    return _c("div", { staticClass: "agree-block" }, [
+      _c("div", { staticClass: "agree-block__row" }, [
+        _c("div", { staticClass: "agree-block__checkbox" }, [
+          _c("label", [
+            _c("input", { attrs: { type: "checkbox" } }),
+            _vm._v(" "),
+            _c("span"),
+            _vm._v(
+              "\n                                    I confirm that I have read and accepted the\n                                    "
+            ),
+            _c(
+              "a",
+              {
+                staticClass: "agree-block__link",
+                attrs: { href: "/privacy_policy" }
+              },
+              [_vm._v("Privacy Policy")]
+            )
+          ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "agree-block__row" }, [
+        _c("div", { staticClass: "agree-block__checkbox" }, [
+          _c("label", [
+            _c("input", { attrs: { type: "checkbox" } }),
+            _vm._v(" "),
+            _c("span"),
+            _vm._v(
+              "\n                                    I confirm that I have read and accepted \n                                    "
+            ),
+            _c(
+              "a",
+              {
+                staticClass: "agree-block__link",
+                attrs: { href: "/terms_conditions" }
+              },
+              [_vm._v("Terms of use")]
+            ),
+            _vm._v(
+              "\n                                    and the\n                                    "
+            ),
+            _c(
+              "a",
+              {
+                staticClass: "agree-block__link",
+                attrs: { href: "/refund_policy" }
+              },
+              [_vm._v("Refund Policy")]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "agree-block__row" }, [
+        _c("div", { staticClass: "agree-block__checkbox" }, [
+          _c("label", [
+            _c("input", { attrs: { type: "checkbox" } }),
+            _vm._v(" "),
+            _c("span"),
+            _vm._v(
+              "\n                                    I am aware that the automatic service renewal option is enabled\n                                "
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wrapBtn" }, [
+      _c("button", { staticClass: "btnSubmit", attrs: { type: "submit" } }, [
+        _vm._v("CONFIRM PAYMENT")
       ])
     ])
   },
@@ -46258,8 +46361,8 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * include Vue and Vue Resource. This gives a great starting point for
@@ -46274,7 +46377,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 
 
-Vue.use(vue_cleave_component__WEBPACK_IMPORTED_MODULE_1___default.a); // Vue.component('example', require('./components/Example.vue'));
+Vue.use(vue_cleave_component__WEBPACK_IMPORTED_MODULE_0___default.a); // Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('card-component', __webpack_require__(/*! ./components/Card/CardComponent */ "./resources/assets/js/components/Card/CardComponent.vue").default);
 var app = new Vue({
@@ -46490,8 +46593,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/resources/assets/js/app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\OSPanel\domains\bookapi\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\bookapi\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ }),

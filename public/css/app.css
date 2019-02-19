@@ -238,6 +238,28 @@ input:disabled {
   background-color: #02a006;
   margin: auto;
   border-radius: 4px;
+  /*.btnSubmit {
+              width: 100%;
+              max-width: 195px;
+              display: block;
+              font-family: RobotoRegular, sans-serif;
+              font-size: 16px;
+              color: #fff;
+              text-transform: uppercase;
+              padding: 15px 0;
+              text-decoration: none;
+              margin: 0 auto;
+              background-color: #4a90e2;
+              cursor: pointer;
+              outline: none;
+              border: none;
+              border-radius: 4px;
+              transition: .5s;
+  
+              &:hover {
+                box-shadow: 0 0 15px rgba(255, 255, 255, .4);
+              }
+            }*/
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput {
@@ -290,39 +312,84 @@ input:disabled {
   background-color: #fff;
 }
 
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .wrapBtn {
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block {
+  text-align: left;
+  padding-left: 25px;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__row {
   display: flex;
-  justify-content: flex-end;
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .wrapBtn .wrapSubmit {
-  width: 100%;
-  max-width: 195px;
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .wrapBtn .wrapSubmit .btnSubmit {
-  display: block;
-  font-family: RobotoRegular, sans-serif;
-  font-size: 16px;
+  align-items: center;
+  margin: 10px 0;
   color: #fff;
-  text-transform: uppercase;
-  padding: 12px 0;
-  text-decoration: none;
-  background-color: #4a90e2;
+  font-family: RobotoRegular, sans-serif;
+  font-size: 12px;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox {
+  font-family: RobotoRegular, sans-serif;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox label {
   cursor: pointer;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  transition: 0.3s;
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .wrapBtn .wrapSubmit .btnSubmit:hover {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .btnSubmit {
+  padding: 0 50px 0 0;
   width: 100%;
-  max-width: 195px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #fff;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox input[type=checkbox] {
+  display: none;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox input[type=checkbox] + span {
+  display: block;
+  float: left;
+  box-sizing: border-box;
+  transition: all 0.25s ease-in-out;
+  position: relative;
+  width: 8px;
+  height: 8px;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin: 5px 15px 5px 0;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox input[type=checkbox] + span:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 1px solid #fff;
+  width: 15px;
+  height: 15px;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox input[type=checkbox]:checked + span {
+  background-color: #fff;
+  border: 3px solid transparent;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__link {
+  text-decoration: none;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__link:hover {
+  text-decoration: underline;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .wrapBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .wrapBtn .btnSubmit {
+  width: 100%;
+  max-width: 200px;
   display: block;
   font-family: RobotoRegular, sans-serif;
   font-size: 16px;
@@ -330,7 +397,7 @@ input:disabled {
   text-transform: uppercase;
   padding: 15px 0;
   text-decoration: none;
-  margin: 0 auto;
+  margin: 15px auto;
   background-color: #4a90e2;
   cursor: pointer;
   outline: none;
@@ -339,67 +406,8 @@ input:disabled {
   transition: 0.5s;
 }
 
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .btnSubmit:hover {
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .radio-box {
-  width: 100%;
-  max-width: 470px;
-  margin: auto;
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .radio-box label {
-  cursor: pointer;
-  padding: 0 50px 0 0;
-  width: 100%;
-  color: #000;
-  display: block;
-  margin-bottom: 30px;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .radio-box input[type=checkbox] {
-  display: none;
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .radio-box input[type=checkbox] + span {
-  display: block;
-  float: left;
-  box-sizing: border-box;
-  border-radius: 100%;
-  transition: all 0.25s ease-in-out;
-  position: relative;
-  width: 18px;
-  height: 18px;
-  text-align: center;
-  line-height: 18px;
-  font-size: 12px;
-  background-color: transparent;
-  border: 1px solid transparent;
-  margin: 5px 15px 10px 0;
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .radio-box input[type=checkbox] + span:before {
-  position: absolute;
-  content: "";
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  text-align: center;
-  border: 1px solid #4a90e2;
-  border-radius: 50px;
-  width: 18px;
-  height: 18px;
-}
-
-.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .radio-box input[type=checkbox]:checked + span {
-  background-color: #4a90e2;
-  color: #FFFFFF;
-  border: 3px solid #fff;
+.overlayFormMember .popup .wrappers .paymentContainer .form .wrapBtn .btnSubmit:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form input::-webkit-input-placeholder {
