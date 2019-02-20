@@ -268,7 +268,7 @@ input:disabled {
   display: flex;
   flex-direction: column;
   margin: 0 auto 10px;
-  padding: 20px 0;
+  padding: 20px 0 0;
   border-radius: 4px;
 }
 
@@ -312,6 +312,18 @@ input:disabled {
   background-color: #fff;
 }
 
+.overlayFormMember .popup .wrappers .paymentContainer .form .tariff-block {
+  font-family: RobotoRegular, sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-align: left;
+  padding: 5px 25px;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .tariff-block p {
+  margin-bottom: 10px;
+}
+
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block {
   text-align: left;
   padding-left: 25px;
@@ -332,10 +344,6 @@ input:disabled {
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox label {
   cursor: pointer;
-  padding: 0 50px 0 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
   font-size: 12px;
   color: #fff;
 }
@@ -345,33 +353,31 @@ input:disabled {
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox input[type=checkbox] + span {
-  display: block;
-  float: left;
-  box-sizing: border-box;
-  transition: all 0.25s ease-in-out;
   position: relative;
-  width: 8px;
-  height: 8px;
-  text-align: center;
-  background-color: transparent;
-  border: 1px solid transparent;
-  margin: 5px 15px 5px 0;
+  top: 3px;
+  display: inline-block;
+  border: 1px solid #fff;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox input[type=checkbox] + span:before {
-  position: absolute;
   content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  position: absolute;
   top: 50%;
+  left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  border: 1px solid #fff;
-  width: 15px;
-  height: 15px;
+  background-color: transparent;
+  transition: all 0.25s linear;
 }
 
-.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox input[type=checkbox]:checked + span {
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox input[type=checkbox]:checked + span:before {
   background-color: #fff;
-  border: 3px solid transparent;
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__link {
