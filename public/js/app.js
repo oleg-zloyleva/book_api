@@ -218,6 +218,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ "./resources/assets/js/components/Card/PaymentInfoComponent.vue").default);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
@@ -253,9 +264,11 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
           if (type === 'amex') {
             _this.maxLengthCvv = '4';
             _this.placeholderCvv = '0000';
+            _this.paymentData.cvvCode = '';
           } else {
             _this.maxLengthCvv = '3';
             _this.placeholderCvv = '000';
+            _this.paymentData.cvvCode = '';
           }
         }
       }
@@ -32516,7 +32529,7 @@ var render = function() {
                       _c("cleave", {
                         staticClass: "input",
                         attrs: {
-                          options: { card: true },
+                          options: { creditCard: true },
                           name: "cvv",
                           id: "cvvCode",
                           maxlength: _vm.maxLengthCvv,
@@ -32537,12 +32550,14 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(2),
                 _vm._v(" "),
-                _vm._m(3)
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._m(4)
               ]
             )
           ]),
           _vm._v(" "),
-          _vm._m(4)
+          _vm._m(5)
         ],
         1
       )
@@ -32569,6 +32584,26 @@ var staticRenderFns = [
       { staticClass: "formLabel", attrs: { for: "cardExpiration" } },
       [_vm._v("Expiration "), _c("br"), _vm._v("Date")]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tariff-block" }, [
+      _c("p", [_vm._v("Your selected tariff is Basic at 49.90 €")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Trial period of 5 days at 2.99 €. If a customer has not unsubscribed before the end of\n                            the trial period, the Starter formula is automatically renewed at 29.90 € / month, the\n                            Basic formula is renewed at 49.90 € / month and the Pro formula at 89.90 € / month."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "A customer can unsubscribe at any time through the unsubscribe page or by contacting our\n                            support team:support@powerliftguru.com (powerliftguru.com) or +386 0 000 0000"
+        )
+      ])
+    ])
   },
   function() {
     var _vm = this

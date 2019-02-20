@@ -58,7 +58,7 @@
                                 <label for="cvvCode" class="formLabel">CVV</label>
                                 <cleave
                                         v-model="paymentData.cvvCode"
-                                        :options="{card: true}"
+                                        :options="{creditCard: true}"
                                         class="input"
                                         name="cvv"
                                         id="cvvCode"
@@ -67,6 +67,16 @@
                                 ></cleave>
                             </div>
                         </div>
+
+                        <div class="tariff-block">
+                            <p>Your selected tariff is Basic at 49.90 €</p>
+                            <p>Trial period of 5 days at 2.99 €. If a customer has not unsubscribed before the end of
+                                the trial period, the Starter formula is automatically renewed at 29.90 € / month, the
+                                Basic formula is renewed at 49.90 € / month and the Pro formula at 89.90 € / month.</p>
+                            <p>A customer can unsubscribe at any time through the unsubscribe page or by contacting our
+                                support team:support@powerliftguru.com (powerliftguru.com) or +386 0 000 0000</p>
+                        </div>
+
                         <div class="agree-block">
                             <div class="agree-block__row">
                                 <div class="agree-block__checkbox">
@@ -100,6 +110,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="wrapBtn">
                             <button type="submit" class="btnSubmit">CONFIRM PAYMENT</button>
                         </div>
@@ -155,9 +166,11 @@
                         if (type === 'amex') {
                             this.maxLengthCvv = '4';
                             this.placeholderCvv = '0000';
+                            this.paymentData.cvvCode = '';
                         } else {
                             this.maxLengthCvv = '3';
                             this.placeholderCvv = '000';
+                            this.paymentData.cvvCode = '';
                         }
                     }
                 }

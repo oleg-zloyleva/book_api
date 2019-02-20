@@ -268,7 +268,7 @@ input:disabled {
   display: flex;
   flex-direction: column;
   margin: 0 auto 10px;
-  padding: 20px 0;
+  padding: 20px 0 0;
   border-radius: 4px;
 }
 
@@ -310,6 +310,18 @@ input:disabled {
   border-radius: 4px;
   padding: 2px;
   background-color: #fff;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .tariff-block {
+  font-family: RobotoRegular, sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-align: left;
+  padding: 5px 25px;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .tariff-block p {
+  margin-bottom: 10px;
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block {
