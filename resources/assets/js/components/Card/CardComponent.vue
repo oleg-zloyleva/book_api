@@ -215,7 +215,7 @@
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         console.log('%c Form Submitted!', 'color: green; font-weight: 600;');
-                        // this.submitCardHandler();
+                        this.submitCardHandler();
                         return;
                     }
 

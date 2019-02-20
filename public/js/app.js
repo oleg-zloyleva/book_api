@@ -315,9 +315,13 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
       }, '*');
     },
     validateSubmitCard: function validateSubmitCard() {
+      var _this2 = this;
+
       this.$validator.validateAll().then(function (result) {
         if (result) {
-          console.log('%c Form Submitted!', 'color: green; font-weight: 600;'); // this.submitCardHandler();
+          console.log('%c Form Submitted!', 'color: green; font-weight: 600;');
+
+          _this2.submitCardHandler();
 
           return;
         }
