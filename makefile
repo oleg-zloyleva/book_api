@@ -28,6 +28,11 @@ composer_dep: #install composer dependency >> ./vendors
 key: #generate APP key
 	@sudo docker-compose exec $(php) php artisan key:generate
 
+start: #start docker container
+	@sudo docker-compose up -d
+
+stop: #stop docker container
+	@sudo docker-compose down
 
 #####################################
 ###                               ###
