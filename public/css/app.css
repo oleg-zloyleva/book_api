@@ -273,11 +273,12 @@ input:disabled {
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .itemInput {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin: 0 auto 15px;
+  margin: 0 auto 20px;
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .itemInput .formLabel {
@@ -302,6 +303,20 @@ input:disabled {
   border-radius: 4px;
   outline: none;
   overflow: hidden;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .itemInput .is-danger {
+  border-color: #e03333;
+  color: #e03333;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .itemInput .inp-required {
+  position: absolute;
+  right: 0;
+  bottom: -15px;
+  font-size: 12px;
+  font-family: RobotoRegular, sans-serif;
+  color: #e03333;
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .wrapInput .itemInput .imgCard {
@@ -332,14 +347,22 @@ input:disabled {
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__row {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 10px 0 15px;
   color: #fff;
   font-family: RobotoRegular, sans-serif;
   font-size: 12px;
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox {
+  position: relative;
   font-family: RobotoRegular, sans-serif;
+}
+
+.overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox .inp-required {
+  position: absolute;
+  top: -11px;
+  left: 0;
+  color: #e03333;
 }
 
 .overlayFormMember .popup .wrappers .paymentContainer .form .agree-block__checkbox label {

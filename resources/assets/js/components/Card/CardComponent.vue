@@ -9,7 +9,7 @@
                 ></payment-info>
 
                 <div class="paymentContainer">
-                    <form class="form" @submit.prevent="submitCardHandler">
+                    <form class="form" method="post" @submit.prevent="validateSubmitCard">
                         <div class="wrapInput">
                             <div class="itemInput">
                                 <label class="formLabel">Card type</label>
@@ -26,45 +26,56 @@
                                 <cleave
                                         v-model="paymentData.cardNumber"
                                         :options="cardNum"
+                                        v-validate="'required|min:15'"
+                                        :class="{'is-danger': errors.has('card_number')}"
                                         class="input"
-                                        name="cardNumber"
+                                        name="card_number"
                                         id="card"
                                         placeholder="0000 0000 0000 0000"
                                 ></cleave>
+                                <span class="inp-required">{{ errors.first('card_number') }}</span>
                             </div>
                             <div class="itemInput">
                                 <label for="cardExpiration" class="formLabel">Expiration <br>Date</label>
                                 <cleave
                                         v-model="paymentData.expirationDate"
                                         :options="{date: true, datePattern: ['m','y']}"
+                                        v-validate="'required|min:4'"
+                                        :class="{'is-danger': errors.has('expiration_date') }"
                                         class="input"
-                                        name="expirationDate"
+                                        name="expiration_date"
                                         id="cardExpiration"
                                         placeholder="00/00"
                                 ></cleave>
+                                <span class="inp-required">{{ errors.first('expiration_date') }}</span>
                             </div>
                             <div class="itemInput">
                                 <label for="nameUser" class="formLabel">Name</label>
                                 <input
                                         v-model="paymentData.nameUser"
+                                        v-validate="'required|alpha'"
+                                        :class="{'is-danger': errors.has('name') }"
                                         class="input"
-                                        name="nameUser"
+                                        name="name"
                                         id="nameUser"
-                                        @input="onlyLetters"
                                         placeholder="Name"
                                 >
+                                <span class="inp-required">{{ errors.first('name') }}</span>
                             </div>
                             <div class="itemInput">
                                 <label for="cvvCode" class="formLabel">CVV</label>
                                 <cleave
                                         v-model="paymentData.cvvCode"
                                         :options="{creditCard: true}"
+                                        v-validate="'required|min:3'"
+                                        :class="{'is-danger': errors.has('cvv') }"
                                         class="input"
                                         name="cvv"
                                         id="cvvCode"
                                         :maxlength="maxLengthCvv"
                                         :placeholder="placeholderCvv"
                                 ></cleave>
+                                <span class="inp-required">{{ errors.first('cvv') }}</span>
                             </div>
                         </div>
 
@@ -80,8 +91,12 @@
                         <div class="agree-block">
                             <div class="agree-block__row">
                                 <div class="agree-block__checkbox">
+                                    <span class="inp-required">{{ errors.first('privacy') }}</span>
                                     <label>
-                                        <input type="checkbox">
+                                        <input
+                                                type="checkbox"
+                                                name="privacy"
+                                                v-validate="'required'">
                                         <span></span>
                                         I confirm that I have read and accepted the
                                         <a class="agree-block__link" href="/privacy_policy">Privacy Policy</a>
@@ -90,8 +105,12 @@
                             </div>
                             <div class="agree-block__row">
                                 <div class="agree-block__checkbox">
+                                    <span class="inp-required">{{ errors.first('terms') }}</span>
                                     <label>
-                                        <input type="checkbox">
+                                        <input
+                                                type="checkbox"
+                                                name="terms"
+                                                v-validate="'required'">
                                         <span></span>
                                         I confirm that I have read and accepted
                                         <a class="agree-block__link" href="/terms_conditions">Terms of use</a>
@@ -102,8 +121,12 @@
                             </div>
                             <div class="agree-block__row">
                                 <div class="agree-block__checkbox">
+                                    <span class="inp-required">{{ errors.first('service_renewal') }}</span>
                                     <label>
-                                        <input type="checkbox">
+                                        <input
+                                                type="checkbox"
+                                                name="service_renewal"
+                                                v-validate="'required'">
                                         <span></span>
                                         I am aware that the automatic service renewal option is enabled
                                     </label>
@@ -151,7 +174,7 @@
                     cardType: "",
                     cardNumber: "",
                     expirationDate: "",
-                    nameUser: "",
+                    name: "",
                     cvvCode: ""
                 },
                 paymentInfo: {},// Todo parse from query OR took in blade
@@ -162,7 +185,6 @@
                     creditCard: true,
                     onCreditCardTypeChanged: (type) => {
                         this.imgCardType = type;
-                        let cvvCode = document.getElementById('cvvCode');
                         if (type === 'amex') {
                             this.maxLengthCvv = '4';
                             this.placeholderCvv = '0000';
@@ -189,8 +211,16 @@
                 //todo generate success/fail event
                 window.parent.postMessage({status: "ok", action: "payment_success"}, '*');
             },
-            onlyLetters(e) {
-                // console.log(e.target.value);
+            validateSubmitCard() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        console.log('%c Form Submitted!', 'color: green; font-weight: 600;');
+                        // this.submitCardHandler();
+                        return;
+                    }
+
+                    console.log('%c Correct them errors!', 'color: red; font-weight: 600;');
+                });
             }
         }
     }
