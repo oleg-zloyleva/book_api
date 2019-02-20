@@ -83,7 +83,7 @@
                                     <label>
                                         <input type="checkbox">
                                         <span></span>
-                                        I confirm that I have read and accepted 
+                                        I confirm that I have read and accepted
                                         <a class="agree-block__link" href="/terms_conditions">Terms of use</a>
                                         and the
                                         <a class="agree-block__link" href="/refund_policy">Refund Policy</a>

@@ -32603,7 +32603,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("span"),
             _vm._v(
-              "\n                                    I confirm that I have read and accepted \n                                    "
+              "\n                                    I confirm that I have read and accepted\n                                    "
             ),
             _c(
               "a",
