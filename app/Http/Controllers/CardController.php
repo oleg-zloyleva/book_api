@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 
 class CardController extends Controller
 {
-    /**
-     * @param \App\Http\Requests\Card\CardFormRequest $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showForm(CardFormRequest $request):View
+
+    public function showForm(Request $request):View
     {
-        return view("form.card",[
-            "data" => collect($request->all())
-        ]);
+        if ($request->has(['email', 'first_name', 'last_name', 'address', 'city', 'country', 'phone', 'postal_code', 'plan_id'])){
+            return view("form.card",[
+                "data" => collect($request->all())
+            ]);
+        }
+
+        return abort(404);
+
     }
 }

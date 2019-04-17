@@ -69,12 +69,12 @@
                         </div>
 
                         <div class="tariff-block">
-                            <p>Your selected tariff is Basic at 49.90 €</p>
+                            <p>Your selected tariff is <span class="FirstLetter">{{ data.plan_name }}</span> at {{ data.plan_price }} €</p>
                             <p>Trial period of 5 days at 2.99 €. If a customer has not unsubscribed before the end of
                                 the trial period, the Starter formula is automatically renewed at 29.90 € / month, the
                                 Basic formula is renewed at 49.90 € / month and the Pro formula at 89.90 € / month.</p>
                             <p>A customer can unsubscribe at any time through the unsubscribe page or by contacting our
-                                support team:support@powerliftguru.com (powerliftguru.com) or +386 0 000 0000</p>
+                                support team:support@astixlimited.com (powerliftguru.com) or +359 2 437 4207</p>
                         </div>
 
                         <div class="agree-block">
@@ -122,7 +122,7 @@
                             subscription
                             service. If you do not unsubscribe before the expiry of the trial period, the subscription
                             will
-                            be renewed every 30 days in the amount of &euro; 29. This campaign complies with the
+                            be renewed every 30 days in the amount of &euro; {{ data.plan_price }}. This campaign complies with the
                             requirements of
                             the European Union.</p>
                     </div>
@@ -139,8 +139,8 @@
     export default {
         name: "CardComponent",
         props: {
-            init_data: {
-                type: String,
+            data: {
+                type: Object,
                 required: true
             }
         },
@@ -176,9 +176,6 @@
                 }
             }
         },
-        created() {
-            this.data = JSON.parse(this.init_data);
-        },
         methods: {
             closeIframe() {
                 window.parent.postMessage({status: "ok", action: "close"}, '*');
@@ -197,5 +194,7 @@
 </script>
 
 <style scoped>
-
+    .FirstLetter{
+        text-transform: capitalize;
+    }
 </style>

@@ -3,7 +3,7 @@
 @section('content')
 
     <card-component
-        init_data="{{ $data }}"
+        :data="{{ $data }}"
     ></card-component>
 
 @endsection
