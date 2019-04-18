@@ -11,7 +11,7 @@ class CardController extends Controller
 
     public function showForm(Request $request):View
     {
-        if ($request->has(['email', 'first_name', 'last_name', 'address', 'city', 'country', 'phone', 'postal_code', 'plan_id'])){
+        if ($request->has(['email', 'first_name', 'last_name', 'address', 'city', 'country', 'phone', 'postal_code', 'plan_id'])){ //,'home','contact_phone'
             return view("form.card",[
                 "data" => collect($request->all())
             ]);

@@ -74,7 +74,9 @@
                                 the trial period, the Starter formula is automatically renewed at 29.90 € / month, the
                                 Basic formula is renewed at 49.90 € / month and the Pro formula at 89.90 € / month.</p>
                             <p>A customer can unsubscribe at any time through the unsubscribe page or by contacting our
-                                support team:support@astixlimited.com (astixlimited.com) or +359 2 437 4207</p>
+                                support team:support@{{this.getLocation(data.home)}} (
+                                <a :href="data.home">{{this.getLocation(data.home)}}</a>
+                                ) or {{ data.contact_phone }}</p>
                         </div>
 
                         <div class="agree-block">
@@ -84,7 +86,7 @@
                                         <input type="checkbox">
                                         <span></span>
                                         I confirm that I have read and accepted the
-                                        <a class="agree-block__link" href="/privacy_policy">Privacy Policy</a>
+                                        <a class="agree-block__link" :href="`${this.getHome(data.home)}/privacy_policy`">Privacy Policy</a>
                                     </label>
                                 </div>
                             </div>
@@ -94,9 +96,9 @@
                                         <input type="checkbox">
                                         <span></span>
                                         I confirm that I have read and accepted
-                                        <a class="agree-block__link" href="/terms_conditions">Terms of use</a>
+                                        <a class="agree-block__link" :href="`${this.getHome(data.home)}/terms_conditions`">Terms of use</a>
                                         and the
-                                        <a class="agree-block__link" href="/refund_policy">Refund Policy</a>
+                                        <a class="agree-block__link" :href="`${this.getHome(data.home)}/refund_policy`">Refund Policy</a>
                                     </label>
                                 </div>
                             </div>
@@ -146,7 +148,6 @@
         },
         data() {
             return {
-                data: {},
                 paymentData: {
                     cardType: "",
                     cardNumber: "",
@@ -188,8 +189,17 @@
             },
             onlyLetters(e) {
                 // console.log(e.target.value);
+            },
+            getLocation(href) {
+                href = this.getHome(href);
+                const l = document.createElement("a");
+                l.href = href;
+                return l.hostname;
+            },
+            getHome(url){
+                return url || "https://astixlimited.com";
             }
-        }
+        },
     }
 </script>
 

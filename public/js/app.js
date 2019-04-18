@@ -229,6 +229,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ "./resources/assets/js/components/Card/PaymentInfoComponent.vue").default);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
@@ -242,7 +244,6 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
     var _this = this;
 
     return {
-      data: {},
       paymentData: {
         cardType: "",
         cardNumber: "",
@@ -290,6 +291,15 @@ Vue.component('payment-info', __webpack_require__(/*! ./PaymentInfoComponent */ 
       }, '*');
     },
     onlyLetters: function onlyLetters(e) {// console.log(e.target.value);
+    },
+    getLocation: function getLocation(href) {
+      href = this.getHome(href);
+      var l = document.createElement("a");
+      l.href = href;
+      return l.hostname;
+    },
+    getHome: function getHome(url) {
+      return url || "https://astixlimited.com";
     }
   }
 });
@@ -33207,12 +33217,86 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", [
                     _vm._v(
-                      "A customer can unsubscribe at any time through the unsubscribe page or by contacting our\n                            support team:support@astixlimited.com (astixlimited.com) or +359 2 437 4207"
+                      "A customer can unsubscribe at any time through the unsubscribe page or by contacting our\n                            support team:support@" +
+                        _vm._s(this.getLocation(_vm.data.home)) +
+                        " (\n                            "
+                    ),
+                    _c("a", { attrs: { href: _vm.data.home } }, [
+                      _vm._v(_vm._s(this.getLocation(_vm.data.home)))
+                    ]),
+                    _vm._v(
+                      "\n                            ) or " +
+                        _vm._s(_vm.data.contact_phone)
                     )
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(2),
+                _c("div", { staticClass: "agree-block" }, [
+                  _c("div", { staticClass: "agree-block__row" }, [
+                    _c("div", { staticClass: "agree-block__checkbox" }, [
+                      _c("label", [
+                        _c("input", { attrs: { type: "checkbox" } }),
+                        _vm._v(" "),
+                        _c("span"),
+                        _vm._v(
+                          "\n                                    I confirm that I have read and accepted the\n                                    "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "agree-block__link",
+                            attrs: {
+                              href:
+                                this.getHome(_vm.data.home) + "/privacy_policy"
+                            }
+                          },
+                          [_vm._v("Privacy Policy")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "agree-block__row" }, [
+                    _c("div", { staticClass: "agree-block__checkbox" }, [
+                      _c("label", [
+                        _c("input", { attrs: { type: "checkbox" } }),
+                        _vm._v(" "),
+                        _c("span"),
+                        _vm._v(
+                          "\n                                    I confirm that I have read and accepted\n                                    "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "agree-block__link",
+                            attrs: {
+                              href:
+                                this.getHome(_vm.data.home) +
+                                "/terms_conditions"
+                            }
+                          },
+                          [_vm._v("Terms of use")]
+                        ),
+                        _vm._v(
+                          "\n                                    and the\n                                    "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "agree-block__link",
+                            attrs: {
+                              href:
+                                this.getHome(_vm.data.home) + "/refund_policy"
+                            }
+                          },
+                          [_vm._v("Refund Policy")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ]),
                 _vm._v(" "),
                 _vm._m(3)
               ]
@@ -33261,70 +33345,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "agree-block" }, [
-      _c("div", { staticClass: "agree-block__row" }, [
-        _c("div", { staticClass: "agree-block__checkbox" }, [
-          _c("label", [
-            _c("input", { attrs: { type: "checkbox" } }),
-            _vm._v(" "),
-            _c("span"),
-            _vm._v(
-              "\n                                    I confirm that I have read and accepted the\n                                    "
-            ),
-            _c(
-              "a",
-              {
-                staticClass: "agree-block__link",
-                attrs: { href: "/privacy_policy" }
-              },
-              [_vm._v("Privacy Policy")]
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "agree-block__row" }, [
-        _c("div", { staticClass: "agree-block__checkbox" }, [
-          _c("label", [
-            _c("input", { attrs: { type: "checkbox" } }),
-            _vm._v(" "),
-            _c("span"),
-            _vm._v(
-              "\n                                    I confirm that I have read and accepted\n                                    "
-            ),
-            _c(
-              "a",
-              {
-                staticClass: "agree-block__link",
-                attrs: { href: "/terms_conditions" }
-              },
-              [_vm._v("Terms of use")]
-            ),
-            _vm._v(
-              "\n                                    and the\n                                    "
-            ),
-            _c(
-              "a",
-              {
-                staticClass: "agree-block__link",
-                attrs: { href: "/refund_policy" }
-              },
-              [_vm._v("Refund Policy")]
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "agree-block__row" }, [
-        _c("div", { staticClass: "agree-block__checkbox" }, [
-          _c("label", [
-            _c("input", { attrs: { type: "checkbox" } }),
-            _vm._v(" "),
-            _c("span"),
-            _vm._v(
-              "\n                                    I am aware that the automatic service renewal option is enabled\n                                "
-            )
-          ])
+    return _c("div", { staticClass: "agree-block__row" }, [
+      _c("div", { staticClass: "agree-block__checkbox" }, [
+        _c("label", [
+          _c("input", { attrs: { type: "checkbox" } }),
+          _vm._v(" "),
+          _c("span"),
+          _vm._v(
+            "\n                                    I am aware that the automatic service renewal option is enabled\n                                "
+          )
         ])
       ])
     ])
