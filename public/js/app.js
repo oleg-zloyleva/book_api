@@ -33207,7 +33207,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", [
                     _vm._v(
-                      "A customer can unsubscribe at any time through the unsubscribe page or by contacting our\n                            support team:support@astixlimited.com (powerliftguru.com) or +359 2 437 4207"
+                      "A customer can unsubscribe at any time through the unsubscribe page or by contacting our\n                            support team:support@astixlimited.com (astixlimited.com) or +359 2 437 4207"
                     )
                   ])
                 ]),
